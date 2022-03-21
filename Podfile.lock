@@ -3,6 +3,7 @@ PODS:
   - AlamofireImage (4.2.0):
     - Alamofire (~> 5.4)
   - Bolts/Tasks (1.9.1)
+  - MBProgressHUD (1.2.0)
   - Parse (1.19.3):
     - Parse/Core (= 1.19.3)
   - Parse/Core (1.19.3):
@@ -10,6 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage
+  - MBProgressHUD
   - Parse
 
 SPEC REPOS:
@@ -17,14 +19,16 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - Bolts
+    - MBProgressHUD
     - Parse
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Parse: 0abb63a0ff6fa34a3f64b81d595a294e2ece143a
 
-PODFILE CHECKSUM: 55453749cfddd66c92161d1e3fa72fb0d714aa9b
+PODFILE CHECKSUM: fde556376e9d5a8bca451d0f83526ef84c1109de
 
 COCOAPODS: 1.11.2

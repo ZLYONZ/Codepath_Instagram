@@ -8,9 +8,10 @@
 import UIKit
 import Parse
 import PhotosUI
+import MBProgressHUD
 import AlamofireImage
 
-class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+class CameraViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentField: UITextField!
@@ -18,6 +19,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        commentField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -28,6 +30,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     @IBAction func onSubmit(_ sender: Any) {
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         let post = PFObject(className: "Posts")
         
         post["caption"] = commentField.text
@@ -35,7 +39,6 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         let imageData = imageView.image!.pngData()
         let file = PFFileObject(name: "image.png", data: imageData!)
-        
         
         post["image"] = file
         
@@ -47,6 +50,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 print("error!")
             }
         }
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
     
     @IBAction func onCamera(_ sender: Any) {
@@ -71,6 +75,18 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 }
             }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == commentField {
+            textField.resignFirstResponder()
+        }
+        return true
     }
     
 //    Old imagePickerController

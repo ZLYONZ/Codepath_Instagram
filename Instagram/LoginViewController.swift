@@ -8,7 +8,7 @@
 import UIKit
 import Parse
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -16,6 +16,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        usernameField.delegate = self
+        passwordField.delegate = self
+        
         // Do any additional setup after loading the view.
     }
     
@@ -45,8 +48,20 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == usernameField {
+            passwordField.becomeFirstResponder()
+        } else if textField == passwordField {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     /*
     // MARK: - Navigation
 
