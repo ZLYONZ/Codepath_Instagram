@@ -46,11 +46,11 @@ class CameraViewController: UIViewController, UITextFieldDelegate, UIImagePicker
             if success {
                 self.dismiss(animated: true, completion: nil)
                 print("saved!")
+                MBProgressHUD.hide(for: self.view, animated: true)
             } else {
                 print("error!")
             }
         }
-        MBProgressHUD.hide(for: self.view, animated: true)
     }
     
     @IBAction func onCamera(_ sender: Any) {

@@ -35,6 +35,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.loadPost()
     }
+    
+    @IBAction func onLogOut(_ sender: Any) {
+        PFUser.logOut()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
