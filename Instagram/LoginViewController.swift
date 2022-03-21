@@ -22,6 +22,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if UserDefaults.standard.bool(forKey: "userLoggedIn") == true {
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
+    
     @IBAction func onSignIn(_ sender: Any) {
         
         let username = usernameField.text!
@@ -30,6 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         PFUser.logInWithUsername(inBackground: username, password: password) { user, error in
             if user != nil {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                UserDefaults.standard.set(true, forKey: "userLoggedIn")
             } else {
                 print("Error: \(error!.localizedDescription)")
             }

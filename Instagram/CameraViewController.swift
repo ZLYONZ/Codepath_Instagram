@@ -64,14 +64,19 @@ class CameraViewController: UIViewController, UITextFieldDelegate, UIImagePicker
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        dismiss(animated: true)
+                
+        dismiss(animated: true, completion: nil)
         
         if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
             let previousImage = imageView.image
             itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
                 DispatchQueue.main.async {
                     guard let self = self, let image = image as? UIImage, self.imageView.image == previousImage else { return }
-                    self.imageView.image = image
+                    
+                    let size = CGSize(width: 300, height: 300)
+                    let scaledImage = image.af.imageScaled(to: size)
+                    
+                    self.imageView.image = scaledImage
                 }
             }
         }
