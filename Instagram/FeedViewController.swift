@@ -78,8 +78,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.myRefreshControl.endRefreshing()
             }
         }
-        
-        
     }
     
     func loadMorePost() {
