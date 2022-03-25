@@ -65,7 +65,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func loadPost() {
         
-        numberOfPost = 3
+        numberOfPost = 20
         
         let query = PFQuery(className: "Posts")
         query.includeKey("author")
@@ -73,17 +73,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         query.findObjectsInBackground { posts, error in
             if posts != nil {
-                self.posts = posts!
+                self.posts = posts!.reversed()
                 self.tableView.reloadData()
+                self.myRefreshControl.endRefreshing()
             }
         }
         
-        self.myRefreshControl.endRefreshing()
+        
     }
     
     func loadMorePost() {
 
-        numberOfPost = numberOfPost + 3
+        numberOfPost = numberOfPost + 20
         
         let query = PFQuery(className: "Posts")
         query.includeKey("author")
@@ -91,7 +92,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         query.findObjectsInBackground { posts, error in
             if posts != nil {
-                self.posts = posts!
+                self.posts = posts!.reversed()
                 self.tableView.reloadData()
             }
         }
