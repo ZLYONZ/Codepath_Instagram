@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+# platform :ios, '15.4'
 
 target 'Instagram' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -9,6 +9,7 @@ target 'Instagram' do
   pod 'Parse'
   pod 'AlamofireImage'
   pod 'MBProgressHUD'
+  pod 'MessageInputBar'
   
   target 'InstagramTests' do
     inherit! :search_paths

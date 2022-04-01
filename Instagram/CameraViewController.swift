@@ -86,7 +86,7 @@ class CameraViewController: UIViewController, UITextFieldDelegate, UIImagePicker
                     guard let self = self, let image = image as? UIImage, self.imageView.image == previousImage else { return }
                     
                     let size = CGSize(width: 300, height: 300)
-                    let scaledImage = image.af.imageScaled(to: size)
+                    let scaledImage = image.af.imageAspectScaled(toFill: size)
                     
                     self.imageView.image = scaledImage
                 }
@@ -111,7 +111,7 @@ class CameraViewController: UIViewController, UITextFieldDelegate, UIImagePicker
 //        let image = info[.editedImage] as! UIImage
 //
 //        let size = CGSize(width: 300, height: 300)
-//        let scaledImage = image.af.imageScaled(to: size)
+//        let scaledImage = image.af.imageAspectScaled(toFill: size)
 //
 //        imageView.image = scaledImage
 //
